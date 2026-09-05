@@ -107,6 +107,11 @@
 
         .link-card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
         .link-card:hover { box-shadow: 0 4px 16px rgba(29,78,216,0.12); transform: translateY(-2px); }
+
+        .pablo-of-day-card {
+            border-left: 4px solid var(--light-accent-secondary);
+        }
+        body.dark-mode .pablo-of-day-card { border-left-color: var(--dark-accent-primary); }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -125,7 +130,8 @@
       "sameAs": [
         "https://www.linkedin.com/in/pablo-nicolas-estevez/",
         "https://github.com/Polandia94",
-        "https://stackoverflow.com/users/18203813/pablo-estevez"
+                "https://stackoverflow.com/users/18203813/pablo-estevez",
+                "https://www.instagram.com/dr_cabra"
       ]
     }
     </script>
@@ -170,10 +176,10 @@
         </div>
     </section>
 
-    <!-- Links -->
+    <!-- Things I Do -->
     <section class="py-20 px-4 bg-gray-50">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Find Me</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Things I Do</h2>
             <div class="grid sm:grid-cols-2 gap-6">
 
                 <a href="https://drive.pablo.ie" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
@@ -192,15 +198,41 @@
                     <p class="text-gray-700">An async HTTP testing library I author and maintain — docs and source on GitHub.</p>
                 </a>
 
-                <a href="https://github.com/Polandia94" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                <a href="https://github.com/aio-libs/aiohttp" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
                     <div class="flex items-center gap-3 mb-2">
-                        <i class="fab fa-github text-blue-700 text-2xl w-8"></i>
-                        <h3 class="text-xl font-bold text-gray-800">GitHub</h3>
+                        <i class="fas fa-bug text-blue-700 text-2xl w-8"></i>
+                        <h3 class="text-xl font-bold text-gray-800">aiohttp Triager</h3>
                     </div>
-                    <p class="text-gray-700">Open source contributions and personal projects.</p>
+                    <p class="text-gray-700">I help triage issues and pull requests in aiohttp, a widely used async Python HTTP framework.</p>
                 </a>
 
-                <a href="https://www.linkedin.com/in/pablo-nicolas-estevez/" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                <a href="https://github.com/arnavtripathy/KubeConfess" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-people-arrows text-blue-700 text-2xl w-8"></i>
+                        <h3 class="text-xl font-bold text-gray-800">KubeConfess</h3>
+                    </div>
+                    <p class="text-gray-700">Collaborating on KubeConfess, including CI improvements and project maintenance.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Me -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Find Me</h2>
+            <div class="grid sm:grid-cols-2 gap-6">
+
+                <a href="https://github.com/Polandia94" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fab fa-github text-blue-700 text-2xl w-8"></i>
+                        <h3 class="text-xl font-bold text-gray-800">GitHub Profile</h3>
+                    </div>
+                    <p class="text-gray-700">My GitHub profile</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/pablo-nicolas-estevez/" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fab fa-linkedin text-blue-700 text-2xl w-8"></i>
                         <h3 class="text-xl font-bold text-gray-800">LinkedIn</h3>
@@ -208,7 +240,7 @@
                     <p class="text-gray-700">Professional background and career history.</p>
                 </a>
 
-                <a href="https://stackoverflow.com/users/18203813/pablo-estevez" target="_blank" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition sm:col-span-2">
+                <a href="https://stackoverflow.com/users/18203813/pablo-estevez" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fab fa-stack-overflow text-blue-700 text-2xl w-8"></i>
                         <h3 class="text-xl font-bold text-gray-800">Stack Overflow</h3>
@@ -216,6 +248,82 @@
                     <p class="text-gray-700">Answers and questions on Python, backend, and web development.</p>
                 </a>
 
+                <a href="https://www.instagram.com/dr_cabra" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fab fa-instagram text-blue-700 text-2xl w-8"></i>
+                        <h3 class="text-xl font-bold text-gray-800">Instagram</h3>
+                    </div>
+                    <p class="text-gray-700">Non-work updates and things from outside the engineering world.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Dublin Meetups -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Dublin Meetups</h2>
+            <p class="text-gray-700 text-center mb-12">Groups I recommend for meeting people across Dublin's tech community.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <a href="https://www.meetup.com/stripe-dublin/?eventOrigin=your_groups" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-credit-card text-blue-700 text-xl w-7"></i>
+                        <h3 class="text-lg font-bold text-gray-800">Stripe Dublin</h3>
+                    </div>
+                    <p class="text-gray-700">Engineering and technology meetups from the Stripe Dublin community.</p>
+                </a>
+
+                <a href="https://www.meetup.com/dub-sec/?eventOrigin=your_groups" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-lock text-blue-700 text-xl w-7"></i>
+                        <h3 class="text-lg font-bold text-gray-800">DUBSEC</h3>
+                    </div>
+                    <p class="text-gray-700">Dublin's community for security professionals and enthusiasts.</p>
+                </a>
+
+                <a href="https://www.meetup.com/pythonireland/" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fab fa-python text-blue-700 text-xl w-7"></i>
+                        <h3 class="text-lg font-bold text-gray-800">Python Ireland</h3>
+                    </div>
+                    <p class="text-gray-700">Connect with Python developers and the wider Python community in Ireland.</p>
+                </a>
+
+                <a href="https://www.meetup.com/data-science-and-engineering-club/" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-chart-line text-blue-700 text-xl w-7"></i>
+                        <h3 class="text-lg font-bold text-gray-800">Data Science &amp; Engineering Club</h3>
+                    </div>
+                    <p class="text-gray-700">Talks and conversations at the intersection of data science and engineering.</p>
+                </a>
+
+                <a href="https://www.meetup.com/pydataireland/?eventOrigin=your_groups" target="_blank" class="link-card bg-gray-50 rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-database text-blue-700 text-xl w-7"></i>
+                        <h3 class="text-lg font-bold text-gray-800">PyData Ireland</h3>
+                    </div>
+                    <p class="text-gray-700">Meetups for Python, data science, machine learning, and analytics.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pablo of the Day -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="pablo-of-day-card bg-gray-50 rounded-lg shadow-md p-8">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="fas fa-calendar-day text-blue-700 text-2xl"></i>
+                    <h2 class="text-3xl font-bold text-gray-800">Pablo of the Day</h2>
+                </div>
+                <p class="text-gray-600 mb-6">A different Pablo from Wikipedia, every day.</p>
+                <a id="pablo-of-day-link" href="#" target="_blank" class="text-blue-700 hover:underline">
+                    <h3 id="pablo-of-day-name" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+                    <p id="pablo-of-day-description" class="text-gray-700"></p>
+                </a>
             </div>
         </div>
     </section>
@@ -228,6 +336,47 @@
     </footer>
 
     <script>
+        const pabloOfTheDay = [
+            { name: 'Pablo Picasso', description: 'Spanish painter, sculptor, and co-founder of Cubism.', url: 'https://en.wikipedia.org/wiki/Pablo_Picasso' },
+            { name: 'Pablo Neruda', description: 'Chilean poet and winner of the Nobel Prize in Literature.', url: 'https://en.wikipedia.org/wiki/Pablo_Neruda' },
+            { name: 'Pablo Casals', description: 'Catalan cellist, composer, and conductor.', url: 'https://en.wikipedia.org/wiki/Pablo_Casals' },
+            { name: 'Pablo de Sarasate', description: 'Spanish violinist and composer.', url: 'https://en.wikipedia.org/wiki/Pablo_de_Sarasate' },
+            { name: 'Pablo Berger', description: 'Spanish film director and screenwriter.', url: 'https://en.wikipedia.org/wiki/Pablo_Berger' },
+            { name: 'Pablo Alborán', description: 'Spanish singer-songwriter and musician.', url: 'https://en.wikipedia.org/wiki/Pablo_Albor%C3%A1n' },
+            { name: 'Pablo Aimar', description: 'Argentine former footballer and coach.', url: 'https://en.wikipedia.org/wiki/Pablo_Aimar' },
+            { name: 'Pablo Zabaleta', description: 'Argentine former footballer.', url: 'https://en.wikipedia.org/wiki/Pablo_Zabaleta' },
+            { name: 'Pablo Carreño Busta', description: 'Spanish professional tennis player.', url: 'https://en.wikipedia.org/wiki/Pablo_Carre%C3%B1o_Busta' },
+            { name: 'Pablo Cuevas', description: 'Uruguayan former professional tennis player.', url: 'https://en.wikipedia.org/wiki/Pablo_Cuevas' },
+            { name: 'Pablo Sandoval', description: 'Venezuelan professional baseball player.', url: 'https://en.wikipedia.org/wiki/Pablo_Sandoval' },
+            { name: 'Pablo Prigioni', description: 'Argentine basketball coach and former player.', url: 'https://en.wikipedia.org/wiki/Pablo_Prigioni' },
+            { name: 'Pablo Armero', description: 'Colombian former footballer.', url: 'https://en.wikipedia.org/wiki/Pablo_Armero' },
+            { name: 'Pablo Acha', description: 'Spanish Olympic archer.', url: 'https://en.wikipedia.org/wiki/Pablo_Acha' },
+            { name: 'Pablo Echarri', description: 'Argentine actor.', url: 'https://en.wikipedia.org/wiki/Pablo_Echarri' },
+            { name: 'Pablo Bartholomew', description: 'Indian photojournalist and recipient of the World Press Photo of the Year award.', url: 'https://en.wikipedia.org/wiki/Pablo_Bartholomew' },
+            { name: 'Pablo Soto', description: 'Spanish computer specialist and software developer.', url: 'https://en.wikipedia.org/wiki/Pablo_Soto_(software_developer)' },
+            { name: 'Pablo Iglesias', description: 'Spanish politician and former university lecturer.', url: 'https://en.wikipedia.org/wiki/Pablo_Iglesias_(politician)' },
+            { name: 'Pablo d’Ors', description: 'Spanish priest, theologian, and writer.', url: 'https://en.wikipedia.org/wiki/Pablo_d%27Ors' },
+            { name: 'Pablo Virgilio David', description: 'Filipino bishop and cardinal.', url: 'https://en.wikipedia.org/wiki/Pablo_Virgilio_David' },
+            { name: 'Pablo Agüero', description: 'Argentine-French filmmaker.', url: 'https://en.wikipedia.org/wiki/Pablo_Ag%C3%BCero' },
+            { name: 'Pablo Cabrera', description: 'American baseball coach and former player.', url: 'https://en.wikipedia.org/wiki/Pablo_Cabrera' },
+            { name: 'Pablo Galdames', description: 'Chilean former footballer and current coach.', url: 'https://en.wikipedia.org/wiki/Pablo_Galdames_(footballer,_born_1974)' },
+            { name: 'Pablo de Blasis', description: 'Argentine professional footballer.', url: 'https://en.wikipedia.org/wiki/Pablo_de_Blasis' },
+            { name: 'Pablo Miyazawa', description: 'Brazilian journalist and writer.', url: 'https://en.wikipedia.org/wiki/Pablo_Miyazawa' }
+        ];
+
+        function showPabloOfTheDay() {
+            const today = new Date();
+            const utcDay = Math.floor(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()) / 86400000);
+            const pablo = pabloOfTheDay[utcDay % pabloOfTheDay.length];
+            const link = document.getElementById('pablo-of-day-link');
+
+            link.href = pablo.url;
+            document.getElementById('pablo-of-day-name').textContent = pablo.name;
+            document.getElementById('pablo-of-day-description').textContent = pablo.description;
+        }
+
+        showPabloOfTheDay();
+
         // Dark mode
         const toggle = document.getElementById('dark-mode-toggle');
         const body = document.body;

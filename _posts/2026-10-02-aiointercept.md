@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How I ended up maintaining an aiohttp mocking library
+title: How I ended up maintaining an aiohttp testing library
 description: The story of aiointercept, from pain points with aioresponses to a library recommended in the aiohttp tracker.
 permalink: /blog/aiointercept
 ---

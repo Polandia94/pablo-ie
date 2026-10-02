@@ -1,0 +1,21 @@
+---
+layout: default
+title: Blog
+description: Writing by Pablo Nicolás Estevez about Python, open source and backend development.
+---
+<section class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">Blog</h1>
+    <p class="text-gray-700 mb-12">A place where I write stuff. I'll figure out what it's about once I've written it.</p>
+
+    <div class="space-y-6">
+        {% for post in site.posts %}
+        <a href="{{ post.url }}" class="link-card bg-white rounded-lg shadow-md p-6 border border-gray-200 block hover:border-blue-400 transition">
+            <p class="text-gray-600 mono text-sm mb-2">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %B %Y" }}</time>
+            </p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ post.title }}</h2>
+            {% if post.description %}<p class="text-gray-700">{{ post.description }}</p>{% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</section>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assign page_title = page.title | default: site.title %}
+    {% assign page_description = page.description | default: site.description %}
+    <meta name="description" content="{{ page_description | escape }}">
+    <title>{% if page.title %}{{ page.title | escape }} · {% endif %}Pablo Nicolás Estevez</title>
+    <link rel="icon" type="image/jpeg" href="/1689715799781.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/1689715799781.jpg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ page_description | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% feed_meta %}
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --light-bg-primary: #F8FAFC;
+            --light-bg-secondary: #E2E8F0;
+            --light-bg-accent: #DBEAFE;
+            --light-text-primary: #0F172A;
+            --light-text-secondary: #475569;
+            --light-accent-primary: #1D4ED8;
+            --light-accent-secondary: #2563EB;
+
+            --dark-bg-primary: #0F172A;
+            --dark-bg-secondary: #1E293B;
+            --dark-bg-accent: #1E3A5F;
+            --dark-text-primary: #E2E8F0;
+            --dark-text-secondary: #94A3B8;
+            --dark-accent-primary: #60A5FA;
+            --dark-accent-secondary: #3B82F6;
+
+            /* Active tokens, swapped by dark mode */
+            --bg: var(--light-bg-primary);
+            --surface: #FFFFFF;
+            --border: var(--light-bg-secondary);
+            --text: var(--light-text-primary);
+            --muted: var(--light-text-secondary);
+            --accent: var(--light-accent-primary);
+            --accent-soft: var(--light-bg-accent);
+        }
+        body.dark-mode {
+            --bg: var(--dark-bg-primary);
+            --surface: var(--dark-bg-secondary);
+            --border: var(--dark-bg-accent);
+            --text: var(--dark-text-primary);
+            --muted: var(--dark-text-secondary);
+            --accent: var(--dark-accent-primary);
+            --accent-soft: var(--dark-bg-accent);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: -0.5px;
+        }
+
+        code, .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Light mode overrides */
+        body .bg-white { background-color: #FFFFFF !important; }
+        body .bg-gray-50 { background-color: var(--light-bg-primary) !important; }
+        body .text-gray-800 { color: var(--light-text-primary) !important; }
+        body .text-gray-700 { color: var(--light-text-secondary) !important; }
+        body .text-gray-600 { color: var(--light-text-secondary) !important; }
+        body .text-blue-700 { color: var(--light-accent-primary) !important; }
+
+        /* Dark mode */
+        body.dark-mode .bg-white { background-color: var(--dark-bg-secondary) !important; }
+        body.dark-mode .bg-gray-50 { background-color: var(--dark-bg-primary) !important; }
+        body.dark-mode .text-gray-800 { color: var(--dark-text-primary) !important; }
+        body.dark-mode .text-gray-700 { color: var(--dark-text-secondary) !important; }
+        body.dark-mode .text-gray-600 { color: var(--dark-text-secondary) !important; }
+        body.dark-mode .text-blue-700 { color: var(--dark-accent-primary) !important; }
+        body.dark-mode .shadow-md,
+        body.dark-mode .shadow-lg,
+        body.dark-mode .shadow-xl { box-shadow: 0 4px 6px rgba(0,0,0,0.4) !important; }
+        body.dark-mode .border-gray-200 { border-color: var(--dark-bg-accent) !important; }
+        body.dark-mode footer { background-color: var(--dark-bg-primary) !important; }
+
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            color: var(--light-text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+        .dark-mode-toggle:hover { background-color: rgba(29,78,216,0.1); color: var(--light-accent-primary); }
+        body.dark-mode .dark-mode-toggle { color: var(--dark-text-secondary); }
+        body.dark-mode .dark-mode-toggle:hover { background-color: rgba(96,165,250,0.15); color: var(--dark-accent-primary); }
+
+        .link-card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+        .link-card:hover { box-shadow: 0 4px 16px rgba(29,78,216,0.12); transform: translateY(-2px); }
+
+        /* Post body */
+        .post-content { font-size: 1.075rem; line-height: 1.8; }
+        .post-content > * + * { margin-top: 1.25rem; }
+        .post-content h2 { font-size: 1.6rem; font-weight: 700; margin-top: 3rem; line-height: 1.3; }
+        .post-content h3 { font-size: 1.25rem; font-weight: 700; margin-top: 2rem; }
+        .post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+        .post-content a:hover { text-decoration-thickness: 2px; }
+        .post-content ul { list-style: disc; padding-left: 1.5rem; }
+        .post-content ol { list-style: decimal; padding-left: 1.5rem; }
+        .post-content li + li { margin-top: 0.4rem; }
+        .post-content :not(pre) > code {
+            font-size: 0.9em;
+            background: var(--accent-soft);
+            padding: 0.1em 0.35em;
+            border-radius: 4px;
+        }
+        .post-content pre {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .post-content blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            color: var(--muted);
+        }
+        .post-content .table-wrap, .post-content details { overflow-x: auto; }
+        .post-content table { width: 100%; border-collapse: collapse; font-size: 0.95rem; line-height: 1.5; }
+        .post-content th, .post-content td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .post-content th { font-weight: 600; }
+        .post-content .small { font-size: 0.9rem; color: var(--muted); }
+
+        .post-content details {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+        }
+        .post-content details > summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--accent);
+            list-style-position: inside;
+        }
+        .post-content details[open] > summary { margin-bottom: 1rem; }
+
+        /* Single-series bar chart */
+        .bar-chart { margin: 2rem 0; }
+        .bar-chart figcaption { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+        .bar-chart-plot {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 240px;
+            padding-top: 1.5rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+        .bar-col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            outline: none;
+        }
+        .bar {
+            width: min(48px, 70%);
+            min-height: 2px;
+            background: var(--accent);
+            border-radius: 4px 4px 0 0;
+            transition: opacity 0.15s ease;
+        }
+        .bar-chart-plot:hover .bar { opacity: 0.55; }
+        .bar-col:hover .bar, .bar-col:focus-visible .bar { opacity: 1; }
+        .bar-x {
+            position: absolute;
+            bottom: -1.6rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .bar { position: relative; flex-shrink: 0; }
+        .bar-label {
+            position: absolute;
+            bottom: calc(100% + 0.25rem);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+        .bar-col::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.55rem;
+            border-radius: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+            z-index: 5;
+        }
+        .bar-col:first-child::after { left: 0; transform: none; }
+        .bar-col:last-child::after { left: auto; right: 0; transform: none; }
+        .bar-col:hover::after, .bar-col:focus-visible::after { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <!-- Top bar -->
+    <div class="fixed w-full top-0 z-50 bg-white shadow-md">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-xl font-bold text-gray-800 mono">&gt; pablo_estevez</a>
+                <div class="flex items-center gap-2">
+                    <a href="/blog/" class="text-sm font-medium text-gray-700 hover:text-blue-700 px-3 py-2">Blog</a>
+                    <a href="/cv/" class="text-sm font-medium text-gray-700 hover:text-blue-700 px-3 py-2">Full CV</a>
+                    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="pt-28 pb-20 px-4">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="text-gray-600 mono text-sm">Pablo Nicolás Estevez · Dublin, Ireland · <a href="mailto:pablo22estevez@gmail.com" class="text-blue-700 hover:underline">pablo22estevez@gmail.com</a> · <a href="/blog/feed.xml" class="text-blue-700 hover:underline">RSS</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode (shares the "darkMode" key with the homepage)
+        const toggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        let saved = null;
+        try { saved = localStorage.getItem('darkMode'); } catch (e) {}
+        if (saved === 'true') {
+            body.classList.add('dark-mode');
+            toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            try { localStorage.setItem('darkMode', isDark); } catch (e) {}
+            toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+    </script>
+</body>
+</html>

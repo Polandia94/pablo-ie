@@ -1,0 +1,18 @@
+title: Pablo Nicolás Estevez
+description: Backend Python Developer based in Dublin, Ireland.
+url: https://pablo.ie
+author: Pablo Nicolás Estevez
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-feed
+
+feed:
+  path: blog/feed.xml
+
+exclude:
+  - .claude

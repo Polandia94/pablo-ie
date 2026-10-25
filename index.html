@@ -112,6 +112,33 @@
             border-left: 4px solid var(--light-accent-secondary);
         }
         body.dark-mode .pablo-of-day-card { border-left-color: var(--dark-accent-primary); }
+
+        .visitor-input {
+            background: var(--light-bg-secondary);
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            color: var(--light-text-primary);
+        }
+        body.dark-mode .visitor-input {
+            background: var(--dark-bg-accent);
+            border-color: var(--dark-bg-secondary);
+            color: var(--dark-text-primary);
+        }
+        .visitor-save {
+            background: var(--light-accent-secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+        }
+        .visitor-save:hover { opacity: 0.9; }
+        .visitor-save:disabled { opacity: 0.5; cursor: default; }
+        body.dark-mode .visitor-save { background: var(--dark-accent-primary); }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -332,6 +359,23 @@
         </div>
     </section>
 
+    <!-- Honor-system Visitor Counter -->
+    <section class="pb-8 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Visitor Counter</h3>
+                <p class="text-gray-600 mb-4">Runs on the honor system. If you're a new visitor, please add 1 to the number yourself and hit save. I trust you.</p>
+                <div class="flex gap-2">
+                    <input id="visitor-input" type="text" maxlength="100" class="visitor-input flex-1 min-w-0" value="…" disabled aria-label="Visitor count">
+                    <button id="visitor-save" class="visitor-save" onclick="saveVisitors()" disabled>
+                        <i class="fas fa-floppy-disk mr-2"></i>Save
+                    </button>
+                </div>
+                <p id="visitor-status" class="text-xs text-gray-600 mt-3 mono">loading…</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Pablo of the Day -->
     <section class="py-20 px-4 bg-white">
         <div class="max-w-3xl mx-auto">
@@ -397,6 +441,48 @@
         }
 
         showPabloOfTheDay();
+
+        // Honor-system visitor counter (public npoint.io bin, anyone can write)
+        const VISITOR_URL = 'https://api.npoint.io/595baa1820da36d5ee24';
+
+        function setVisitorUI(value, status, busy) {
+            if (value !== undefined) document.getElementById('visitor-input').value = value;
+            document.getElementById('visitor-status').textContent = status;
+            document.getElementById('visitor-input').disabled = busy;
+            document.getElementById('visitor-save').disabled = busy;
+        }
+
+        async function loadVisitors() {
+            try {
+                const res = await fetch(VISITOR_URL, { cache: 'no-store' });
+                const data = await res.json();
+                setVisitorUI(String(data.visitors ?? '0'), 'the counter says this. could be true.', false);
+            } catch (e) {
+                setVisitorUI('?', 'could not reach the counter. trust is broken.', false);
+            }
+        }
+
+        async function saveVisitors() {
+            const value = document.getElementById('visitor-input').value.slice(0, 100);
+            setVisitorUI(value, 'saving…', true);
+            try {
+                const res = await fetch(VISITOR_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ visitors: value }),
+                });
+                if (!res.ok) throw new Error(res.status);
+                setVisitorUI(value, 'saved. thanks for being honest.', false);
+            } catch (e) {
+                setVisitorUI(undefined, 'save failed. your honesty was not recorded.', false);
+            }
+        }
+
+        document.getElementById('visitor-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') saveVisitors();
+        });
+
+        loadVisitors();
 
         // Dark mode
         const toggle = document.getElementById('dark-mode-toggle');
